@@ -1,0 +1,16 @@
+<ng-container *ngIf="selectedProduct != ''">
+  <hr style="border: 1px dashed black" />
+  <!-- <ng-template #selectedItems> -->
+  <div class="selectedItems">
+    <h4>Shopping cart component</h4>
+    <p>Items in your cart:</p>
+    <ul>
+      <li *ngFor="let product of selectedProduct; let i = index" class="mb-1">
+        {{ product.name }}
+        <button (click)="removeProduct(product, i)">Remove</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- </ng-template> -->
+</ng-container>

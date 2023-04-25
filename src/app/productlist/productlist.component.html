@@ -1,0 +1,31 @@
+<main>
+  <h4>Products</h4>
+
+  <div class="products">
+    <div class="item" *ngFor="let product of products; let i = index">
+      <span>{{ product.name | titlecase }} </span>
+
+      <!-- <button (click)="onSelected(product); hideCart(product, i)">
+        Add to Cart
+      </button> -->
+
+      <!-- <ng-container *ngIf="getHideEle().name != product.name"> -->
+      <button
+        [ngClass]="{ hide: isClicked, show: !isClicked }"
+        (click)="onSelected(product, i)"
+      >
+        Add to Cart
+      </button>
+      <!-- </ng-container> -->
+    </div>
+
+    <div class="removed" *ngIf="removedProduct">
+      <p>{{ removedProduct }} was removed form the cart.</p>
+    </div>
+
+    <app-shoppingcart
+      [selectedProduct]="getSelectedProduct()"
+      (removeEvt)="removeNoti($event)"
+    ></app-shoppingcart>
+  </div>
+</main>
