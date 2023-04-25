@@ -6,11 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./productlist.component.css']
 })
 export class ProductlistComponent {
+
   selectedProduct?: any = [];
-  // hideCartProduct?: any = [];
-  i = 0;
-  clicked?: boolean;
   removedProduct?: any;
+  removedProductId?: any;
 
   loading: boolean = true;
 
@@ -35,16 +34,17 @@ export class ProductlistComponent {
     }
   ]
 
+
   onSelected(product: any, index: any) {
 
-    this.selectedProduct[this.i] = product;
-    this.i++;
-    this.clicked = true;
-    this.products[index]['isClicked'] = this.clicked;
-    console.log('product>>', this.products);
-    // console.log("isclicked after click>>", product['isClicked']);
+    let length = this.selectedProduct.length;
+    console.log("length of selected product array >>", length)
 
-    // console.log('selected product>>', this.selectedProduct[0]);
+    this.selectedProduct[length] = product;
+    this.products[index]['isClicked'] = true;
+
+    console.log('product>>', this.products);
+    // console.log('selected product>>', this.selectedProduct[length]);
     // console.log('selected product array >>', this.selectedProduct)
 
   }
@@ -53,19 +53,11 @@ export class ProductlistComponent {
     return this.selectedProduct;
   }
 
-
-  // hideCart(product: any, index: number) {
-  //   this.isClicked = true;
-  //   this.hideCartProduct = product;
-  // }
-
-  // getHideEle() {
-  //   return this.hideCartProduct;
-  // }
-
   removeNoti(event: any) {
-    console.log("remove product event from pl>>", event);
     this.removedProduct = event.name;
-    (console.log("to be display", this.removedProduct));
+    this.removedProductId = event.id;
+    this.products[this.removedProductId - 1]['isClicked'] = false;
+
+    // console.log("remove product event from productlist>>", event);
   }
 }

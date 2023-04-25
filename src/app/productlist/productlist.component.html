@@ -1,25 +1,24 @@
 <main>
   <h4>Products</h4>
 
-  <ng-container *ngIf="loading">
+  <!-- skeleton loader demo -->
+  <!-- <ng-container *ngIf="loading">
     <div style="width: 25%">
       <ngx-skeleton-loader count="3" appearance="line"></ngx-skeleton-loader>
     </div>
-  </ng-container>
+  </ng-container> -->
 
   <div class="products">
-    <div class="item" *ngFor="let product of products; let i = index">
-      <span>{{ product.name | titlecase }} </span>
-
-      <!-- <button (click)="onSelected(product, i)">Add to Cart</button> -->
-
-      <!-- *ngIf="getHideEle().name != product.name" 
-      [ngClass]="{ hide: clicked, show: !clicked }"-->
-
-      <ng-container *ngIf="product.isClicked == false">
-        <button (click)="onSelected(product, i)">Add to Cart</button>
-      </ng-container>
-    </div>
+    <ul>
+      <li *ngFor="let product of products; let i = index" class="mb-1">
+        {{ product.name }}
+        <ng-container *ngIf="product.isClicked == false">
+          <button (click)="onSelected(product, i)" class="ms-2">
+            Add to Cart
+          </button>
+        </ng-container>
+      </li>
+    </ul>
 
     <div class="removed" *ngIf="removedProduct">
       <p>{{ removedProduct }} was removed form the cart.</p>

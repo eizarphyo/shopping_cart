@@ -9,14 +9,13 @@ export class ShoppingcartComponent {
   // @Input() productList: any = [];
   @Input() selectedProduct?: any;
   @Output() notifyEvt = new EventEmitter;
-  @Output()
   removedProduct?: any;
 
   removeProduct(product: any, index: number) {
     this.notifyEvt.emit(product);
-    let deleted = this.selectedProduct.splice(index, 1);
     this.removedProduct = this.selectedProduct.splice(index, 1);
-    console.log("removed product>>", deleted);
-    console.log("selected product array>>", this.selectedProduct);
+
+    console.log("removed product>>", this.removedProduct);
+    console.log("in the array>>", this.selectedProduct);
   }
 }
