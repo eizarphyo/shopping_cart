@@ -8,13 +8,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ShoppingcartComponent {
   // @Input() productList: any = [];
   @Input() selectedProduct?: any;
-  @Output() notifyRemove = new EventEmitter;
-
+  @Output() notifyEvt = new EventEmitter;
+  @Output()
   removedProduct?: any;
 
   removeProduct(product: any, index: number) {
-    this.notifyRemove.emit(product);
+    this.notifyEvt.emit(product);
     let deleted = this.selectedProduct.splice(index, 1);
+    this.removedProduct = this.selectedProduct.splice(index, 1);
     console.log("removed product>>", deleted);
     console.log("selected product array>>", this.selectedProduct);
   }

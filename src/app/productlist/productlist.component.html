@@ -1,22 +1,24 @@
 <main>
   <h4>Products</h4>
 
+  <ng-container *ngIf="loading">
+    <div style="width: 25%">
+      <ngx-skeleton-loader count="3" appearance="line"></ngx-skeleton-loader>
+    </div>
+  </ng-container>
+
   <div class="products">
     <div class="item" *ngFor="let product of products; let i = index">
       <span>{{ product.name | titlecase }} </span>
 
-      <!-- <button (click)="onSelected(product); hideCart(product, i)">
-        Add to Cart
-      </button> -->
+      <!-- <button (click)="onSelected(product, i)">Add to Cart</button> -->
 
-      <!-- <ng-container *ngIf="getHideEle().name != product.name"> -->
-      <button
-        [ngClass]="{ hide: isClicked, show: !isClicked }"
-        (click)="onSelected(product, i)"
-      >
-        Add to Cart
-      </button>
-      <!-- </ng-container> -->
+      <!-- *ngIf="getHideEle().name != product.name" 
+      [ngClass]="{ hide: clicked, show: !clicked }"-->
+
+      <ng-container *ngIf="product.isClicked == false">
+        <button (click)="onSelected(product, i)">Add to Cart</button>
+      </ng-container>
     </div>
 
     <div class="removed" *ngIf="removedProduct">
@@ -25,7 +27,7 @@
 
     <app-shoppingcart
       [selectedProduct]="getSelectedProduct()"
-      (removeEvt)="removeNoti($event)"
+      (notifyEvt)="removeNoti($event)"
     ></app-shoppingcart>
   </div>
 </main>

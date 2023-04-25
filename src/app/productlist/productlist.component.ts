@@ -8,39 +8,44 @@ import { Component } from '@angular/core';
 export class ProductlistComponent {
   selectedProduct?: any = [];
   // hideCartProduct?: any = [];
-  show: boolean = true;
   i = 0;
-  isClicked?: boolean;
+  clicked?: boolean;
   removedProduct?: any;
+
+  loading: boolean = true;
 
   products = [
     {
-      id: 1001,
+      id: 1,
       name: 'Android TV',
       brand: 'Samsung',
+      isClicked: false
     },
     {
-      id: 1002,
+      id: 2,
       name: 'Electric Lamp',
       brand: 'Midea',
+      isClicked: false
     },
     {
-      id: 1003,
+      id: 3,
       name: 'Refrigerator',
-      brand: 'Toshiba'
+      brand: 'Toshiba',
+      isClicked: false
     }
   ]
 
-  onSelected(product: any, myindex: any) {
-
-
+  onSelected(product: any, index: any) {
 
     this.selectedProduct[this.i] = product;
     this.i++;
-    this.isClicked = true;
-    console.log('product>>', product);
-    console.log('selected product>>', this.selectedProduct[0]);
-    console.log('selected product array >>', this.selectedProduct)
+    this.clicked = true;
+    this.products[index]['isClicked'] = this.clicked;
+    console.log('product>>', this.products);
+    // console.log("isclicked after click>>", product['isClicked']);
+
+    // console.log('selected product>>', this.selectedProduct[0]);
+    // console.log('selected product array >>', this.selectedProduct)
 
   }
 
